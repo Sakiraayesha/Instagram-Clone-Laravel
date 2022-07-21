@@ -15,9 +15,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -35,12 +35,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
+                    <div class="navbar-nav me-auto m-auto">
+                        <div class="border border-gray px-2 bg-light">
+                            <img src="/icons/icons8-search-16.png">
+                            <input type="search" class ="bg-light" style="outline: none; border: none" placeholder="Search">
+                        </div> 
+                    </div>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -55,6 +58,29 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item dropdown">
+                                <a class="text-decoration-none" href="{{ url('/') }}">
+                                    <div style="width: 20px" class="mr-3">
+                                        <img src="/icons/icons8-home-32.png" class="w-100">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <div style="width: 20px" class="mr-3">
+                                    <img src="/icons/icons8-sent-32.png" class="w-100">
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <div style="width: 22px" class="mr-3">
+                                    <img src="/icons/icons8-favorite-32.png" class="w-100">
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="/profile/{{ Auth::user()->id }}" class="text-decoration-none" class="mr-2">
+                                    <img src="{{ Auth::user()->profile->profileImage() }}" 
+                                    class="rounded-circle w-100" alt="" style="max-width:35px">
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}

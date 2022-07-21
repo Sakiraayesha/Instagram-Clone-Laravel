@@ -68,4 +68,8 @@ class User extends Authenticatable
     public function following(){
         return $this->belongsToMany(Profile::class);
     }
+
+    public function likes(){
+        return $this->belongsToMany(Post::class);
+    }
 }

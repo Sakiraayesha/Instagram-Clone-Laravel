@@ -3,34 +3,87 @@
 @section('content')
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="col-5">
+        <div class="col-8 col-md-7 col-lg-5 border-top border-bottom border-left border-gray p-0">
             <img src="/storage/{{ $post->image }}" class="w-100" alt="">
         </div>
-        <div class="col-3">
-            <div>
-                <div class="d-flex align-items-center">
-                    <div class="mr-2">
+        <div class="col-4 col-lg-3 border-top border-bottom border-right border-gray p-0 bg-white">
+            <div class="d-flex flex-column h-100">
+                <div class="d-flex align-items-center border-bottom border-gray pb-3 pt-3">
+                    <div class="mr-2 ml-3">
                         <img src="{{ $post->user->profile->profileImage() }}" 
                         class="rounded-circle w-100" alt="" style="max-width:40px">
                     </div>
-                    <div>
-                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
+                    <div class="d-flex align-items-center">
+                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none mr-1">
                             <span class="text-dark font-weight-bold">
                                 {{ $post->user->username }}
                             </span>
                         </a>
-                        &bull;
-                        <a href="#">Follow</a>
+                        @cannot ('update', $post->user->profile)
+                            &bull;
+                            <follow-button user-id="{{ $post->user_id }}" follows="{{ $follows }}" postview=true></follow-button>
+                        @endcannot
                     </div>
                 </div>
-                <hr>
-                <div>
-                    <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
+                <div class="border-bottom border-gray pb-3 pt-3">
+                    <a href="/profile/{{ $post->user_id }}" class="text-decoration-none ml-3">
                         <span class="text-dark font-weight-bold">
                             {{ $post->user->username }}
                         </span>
                     </a>
                     <span>{{ $post->caption }}</span>
+                </div>
+                <div class="pb-2 pt-3">
+                    <div class="mb-1 ml-3">
+                        <img src="{{ Auth::user()->profile->profileImage() }}" 
+                            class="rounded-circle w-100" alt="" style="max-width:25px">
+                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
+                            <span class="text-dark font-weight-bold">
+                                {{ $post->user->username }}
+                            </span>
+                        </a>
+                        <span> Nice Picture!</span>    
+                    </div>
+                    <div class="mb-1  ml-3">
+                        <img src="{{ Auth::user()->profile->profileImage() }}" 
+                            class="rounded-circle w-100" alt="" style="max-width:25px">
+                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
+                            <span class="text-dark font-weight-bold">
+                                {{ $post->user->username }}
+                            </span>
+                        </a>
+                        <span> Love it!!!!!!!!!!!</span>    
+                    </div>
+                    <div class="mb-1  ml-3">
+                        <img src="{{ Auth::user()->profile->profileImage() }}" 
+                            class="rounded-circle w-100 " alt="" style="max-width:25px">
+                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
+                            <span class="text-dark font-weight-bold">
+                                {{ $post->user->username }}
+                            </span>
+                        </a>
+                        <span> some nice comment </span>    
+                    </div>
+                </div>
+                <div class="border-top border-gray pt-2 pb-3 mt-auto d-flex flex-column">
+                    <div class="border-bottom border-gray pb-2 pl-3">
+                        <post-buttons post-id="{{ $post->id }}" likes="{{ $likes }}"></post-buttons>
+                        <div class="mt-1">
+                            <img src="{{ Auth::user()->profile->profileImage() }}" 
+                                class="rounded-circle w-100" alt="" style="max-width:20px">
+                            <span class="fs-8">Liked by test1 and 2 others</span>    
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center pt-3 pl-3">
+                        <div>
+                            <img src="{{ Auth::user()->profile->profileImage() }}" 
+                                class="rounded-circle w-100" alt="" style="max-width:25px">
+                            <input id="postcomment" type="text" class ="fs-7" style="outline: none; border: none" placeholder="Add a comment...">    
+                        </div>
+                        <div>
+                            <div class="text-info fs-7 mr-2" style="cursor: pointer">Post</div>    
+                        </div>
+                    </div>
                 </div>
             </div>    
         </div>
