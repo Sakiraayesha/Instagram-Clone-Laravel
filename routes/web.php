@@ -30,5 +30,6 @@ Route::post('/p', [App\Http\Controllers\PostsController::class, 'store']);
 Route::get('/p/{post}', [App\Http\Controllers\PostsController::class, 'show']);
 
 Route::post('/like/{post}', [App\Http\Controllers\LikesController::class, 'store']);
+Route::post('/comment/{post}', [App\Http\Controllers\CommentsController::class, 'store']);
 Route::post('/follow/{user}', [App\Http\Controllers\FollowsController::class, 'store']);
 

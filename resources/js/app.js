@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('follow-button', require('./components/FollowButton.vue').default);
 Vue.component('post-buttons', require('./components/PostButtons.vue').default);
+Vue.component('add-comment', require('./components/AddComment.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

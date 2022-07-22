@@ -7374,12 +7374,12 @@ textarea.form-control-lg {
   font-size: 0.9rem !important;
 }
 
-.fs-7{
-  font-size: 12px;
+.fs-7 {
+  font-size: 0.75rem !important;
 }
 
-.fs-8{
-  font-size: 11px;
+.fs-8 {
+  font-size: 0.7rem !important;
 }
 
 .fst-italic {

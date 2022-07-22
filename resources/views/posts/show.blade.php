@@ -33,56 +33,45 @@
                     </a>
                     <span>{{ $post->caption }}</span>
                 </div>
-                <div class="pb-2 pt-3">
-                    <div class="mb-1 ml-3">
-                        <img src="{{ Auth::user()->profile->profileImage() }}" 
-                            class="rounded-circle w-100" alt="" style="max-width:25px">
-                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
-                            <span class="text-dark font-weight-bold">
-                                {{ $post->user->username }}
-                            </span>
-                        </a>
-                        <span> Nice Picture!</span>    
+                <div class="pb-2 pt-3" id="commentbox">
+                    @foreach ($comments->take(3) as $comment)
+                        <div class="mb-1 ml-3 commentclass">
+                            <img src="{{ $comment->user->profile->profileImage() }}" 
+                                class="rounded-circle w-100" alt="" style="max-width:25px">
+                            <a href="/profile/{{ $comment->user_id }}" class="text-decoration-none">
+                                <span class="text-dark font-weight-bold">
+                                    {{ $comment->user->username }}
+                                </span>
+                            </a>
+                            <span> {{ $comment->comment }}</span>    
+                        </div>
+                    @endforeach
+                    @if($loadmoreComments > 0)
+                    <div class="text-center">
+                        <span class="fs-8 text-muted">
+                            Load {{ $loadmoreComments }} 
+                            {{ $loadmoreComments > 1 ? "more comments" : "more comment" }}
+                        </span>
                     </div>
-                    <div class="mb-1  ml-3">
-                        <img src="{{ Auth::user()->profile->profileImage() }}" 
-                            class="rounded-circle w-100" alt="" style="max-width:25px">
-                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
-                            <span class="text-dark font-weight-bold">
-                                {{ $post->user->username }}
-                            </span>
-                        </a>
-                        <span> Love it!!!!!!!!!!!</span>    
-                    </div>
-                    <div class="mb-1  ml-3">
-                        <img src="{{ Auth::user()->profile->profileImage() }}" 
-                            class="rounded-circle w-100 " alt="" style="max-width:25px">
-                        <a href="/profile/{{ $post->user_id }}" class="text-decoration-none">
-                            <span class="text-dark font-weight-bold">
-                                {{ $post->user->username }}
-                            </span>
-                        </a>
-                        <span> some nice comment </span>    
-                    </div>
+                    @endif
                 </div>
                 <div class="border-top border-gray pt-2 pb-3 mt-auto d-flex flex-column">
                     <div class="border-bottom border-gray pb-2 pl-3">
                         <post-buttons post-id="{{ $post->id }}" likes="{{ $likes }}"></post-buttons>
-                        <div class="mt-1">
-                            <img src="{{ Auth::user()->profile->profileImage() }}" 
-                                class="rounded-circle w-100" alt="" style="max-width:20px">
-                            <span class="fs-8">Liked by test1 and 2 others</span>    
-                        </div>
+                        @if($likesCount > 0)
+                            <div class="mt-1">
+                                <span class="fs-8 fw-bold">{{ $likesCount }} {{$likesCount > 1 ? "likes" : "like" }}</span>    
+                            </div>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-between align-items-center pt-3 pl-3">
                         <div>
                             <img src="{{ Auth::user()->profile->profileImage() }}" 
                                 class="rounded-circle w-100" alt="" style="max-width:25px">
-                            <input id="postcomment" type="text" class ="fs-7" style="outline: none; border: none" placeholder="Add a comment...">    
+                            <input id="comment" type="text" name="comment" required
+                                class ="fs-7" style="outline: none; border: none" placeholder="Add a comment...">    
                         </div>
-                        <div>
-                            <div class="text-info fs-7 mr-2" style="cursor: pointer">Post</div>    
-                        </div>
+                        <add-comment post-id="{{ $post->id }}" user-id="{{ Auth::user()->id }}" image="{{Auth::user()->profile->profileImage()}}" username="{{Auth::user()->username}}"></add-comment>
                     </div>
                 </div>
             </div>    

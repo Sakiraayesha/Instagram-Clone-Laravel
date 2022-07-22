@@ -5,7 +5,7 @@
                 <img v-bind:src="likeIcon" class="w-100">
             </div> 
             <div style="width: 22px" class="ml-3"
-                 onclick="document.getElementById('postcomment').focus();">
+                 onclick="document.getElementById('comment').focus();">
                 <img src="/icons/icons8-comments-32.png" class="w-100">
             </div>
             <div style="width: 24px" class="ml-3">

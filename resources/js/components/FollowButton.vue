@@ -1,11 +1,9 @@
 <template>
     <div>
         <button v-if="!postview" class="btn btn-outline-secondary ml-4" @click="followUser" v-text="buttonText"></button>
-        <span v-if="postview" class="text-primary font-weight-bold ml-1" @click="followUser" v-text="buttonText" style="font-size: 12px; cursor: pointer"></span>
+        <span v-if="postview" class="text-info font-weight-bold ml-1" @click="followUser" v-text="buttonText" style="font-size: 13px; cursor: pointer"></span>
     </div>   
 </template>
-
-
 
 <script>
 import axios from 'axios'
