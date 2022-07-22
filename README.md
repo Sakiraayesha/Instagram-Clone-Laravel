@@ -6,5 +6,6 @@ Included Features-
 - Automated welcome email to newly registered users
 - Instagram inspired Profile and Feed
 - Share photos
+- Like/Comment on photos
 - Edit profile
 - Follow/Unfollow users
